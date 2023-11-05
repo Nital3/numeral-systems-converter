@@ -7,8 +7,11 @@ and saving resaults as variable */
 if(isset($_POST['Sub'])){ //check if form was submitted
     $output=null;
     $retval=null;
-    $value=$_POST['Bin'];
-    exec("calculator.exe $value", $output, $retval );
+    $value_bin=$_POST['Bin'];
+    $value_oct=$_POST['Oct'];
+    $value_dec=$_POST['Dec'];
+    $value_hex=$_POST['Hex'];
+    exec("calculator.exe $value_bin $value_oct $value_dec $value_hex", $output, $retval );
 }    
 ?>
 
@@ -36,7 +39,7 @@ if(isset($_POST['Sub'])){ //check if form was submitted
     
     <?php
     //printing out resault of C script
-    print($output[0]);
+    print_r($output);
     ?>
 
     </body>
