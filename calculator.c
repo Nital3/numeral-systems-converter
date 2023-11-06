@@ -118,7 +118,7 @@ int main(int argc, char* argv[]){
     //Max Hex lenght: 16
     char hexadecimal_char[16];
     int hexadecimal_int[16];
-    strcpy(hexadecimal_char,argv[2]);
+    strcpy(hexadecimal_char,argv[4]);
     
     //converting character hexadecimal table into int hexadecimal table
     for(int i=0; i<strlen(hexadecimal_char); i++){
