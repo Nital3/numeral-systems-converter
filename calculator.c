@@ -42,12 +42,12 @@ int char_to_int(char character){
 }
 
 
-//converts number in any given numeral system into single decimal int
+//converts number in any given n-based system into single decimal int
 //arguments: list of ints, list lenght ,source numeral system 
-int anysys_to_decimalsys(int numbers[], int lenght, int source_sys){
+int nsys_to_decimal(int numbers[], int lenght, int n){
     int resault=0;
     for(int i=0; i<lenght; i++){
-        resault += numbers[i]*pow(source_sys,lenght-1-i);
+        resault += numbers[i]*pow(n,lenght-1-i);
     }
 
 return(resault);
@@ -77,7 +77,7 @@ int main(int argc, char* argv[]){
     }
 
     //converting binary int table into single decimal int
-    int bdecimal_int = anysys_to_decimalsys(binary_int, strlen(binary_char), 2);
+    int bdecimal_int = nsys_to_decimal(binary_int, strlen(binary_char), 2);
 
 
 
@@ -93,7 +93,7 @@ int main(int argc, char* argv[]){
     }
 
     //converting octal int table into single decimal int
-    int odecimal_int = anysys_to_decimalsys(octal_int, strlen(octal_char), 8);
+    int odecimal_int = nsys_to_decimal(octal_int, strlen(octal_char), 8);
 
 
     //decimal char to int conversion
@@ -126,7 +126,7 @@ int main(int argc, char* argv[]){
     }
 
     //converting hexadecimal int table into single decimal int
-    int hdecimal_int = anysys_to_decimalsys(hexadecimal_int, strlen(hexadecimal_char), 16);
+    int hdecimal_int = nsys_to_decimal(hexadecimal_int, strlen(hexadecimal_char), 16);
 
 
 
