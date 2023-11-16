@@ -4,7 +4,8 @@
 /* script sending data from first cell of form into C script for processing 
 and saving resaults as variable */
 
-if(isset($_POST['Sub'])){ //check if form was submitted
+//check if form was submitted
+if(isset($_POST['Sub'])){
     $output=null;
     $retval=null;
     $value_bin=$_POST['Bin'];
