@@ -3,6 +3,7 @@
 #include<stdio.h>
 #include<string.h>
 #include<math.h>
+#include <stdbool.h>
 
 //global variables to pass data between functions   
 char binary_char[65];
@@ -61,21 +62,22 @@ return(resault);
 
 
 //converts decimal number into number in given n-based system
-//arguments(int in decimal system, pointer to destination string, lenght of pointed string, n)
-void decimal_to_nsys(int decimal, char* number, int lenght ,int n){
+//arguments(int in decimal system, pointer to destination string, lenght of pointed string, n), firt run bool
+void decimal_to_nsys(int decimal, char* number, int lenght ,int n, bool first_run){
     
 
     //Converting decimal numbers into numbers in n based system (Up to n=16)
     char mod;
     int x = lenght-1;
 
+    if(first_run){
     //marking end of the string
     number[x] = '\0';
+    x -= 1;
+    }
 
+    if (decimal>0){
 
-    while (decimal>0)
-    {   
-        x--;
         switch (decimal%n)
         {
         case 0: case 1: case 2: case 3: case 4: case 5: case 6: case 7: case 8: case 9:
@@ -105,20 +107,18 @@ void decimal_to_nsys(int decimal, char* number, int lenght ,int n){
             break;
         }
 
+
+
         //copying resaulting character into next memory byte of "list" table, cell adress increments by 1 with each loop execution
         memcpy(number+x,&mod,1);
         decimal = decimal/n;
+
+        decimal_to_nsys(decimal, number, x, n, false);
     }
 
-        while (x>=0)
-        {
-            x--;
-            memcpy(number+x,"0",1);
-        }
-        
-
-
 }
+
+
 
 
 
@@ -196,24 +196,24 @@ int main(int argc, char* argv[]){
 //returning resault to PHP trought printf
 printf("%s ",binary_char);
 printf("%i ",bdecimal_int);
-decimal_to_nsys(bdecimal_int, binary_char, 65, 2);
+decimal_to_nsys(bdecimal_int, binary_char, 65, 2, true);
 printf("%s\n",binary_char);
 
 
 printf("%s ",octal_char);
 printf("%i ",odecimal_int);
-decimal_to_nsys(odecimal_int, octal_char, 23, 8);
+decimal_to_nsys(odecimal_int, octal_char, 23, 8, true);
 printf("%s\n",octal_char);
 
 
 printf("%s ",decimal_char);
 printf("%i ",ddecimal_int);
-decimal_to_nsys(ddecimal_int, decimal_char, 21, 10);
+decimal_to_nsys(ddecimal_int, decimal_char, 21, 10, true);
 printf("%s\n",decimal_char);
 
 printf("%s ",hexadecimal_char);
 printf("%i ",hdecimal_int);
-decimal_to_nsys(hdecimal_int, hexadecimal_char, 17, 16);
+decimal_to_nsys(hdecimal_int, hexadecimal_char, 17, 16, true);
 printf("%s\n",hexadecimal_char);
 
 //Variable size problem :(
