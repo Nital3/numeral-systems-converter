@@ -15,9 +15,9 @@ char hexadecimal_char[9];
 
 //note: all functions work on tables
 
-int char_to_int(char character){
+long char_to_long(char character){
     
-        //converts character into int value
+        //converts character into long value
         switch (character)
         {
         case '0': case '1': case '2': case '3': case '4': case '5': case '6': case '7': case '8': case '9':
@@ -49,10 +49,10 @@ int char_to_int(char character){
 }
 
 
-//converts number in any given n-based system into single decimal int
-//arguments: list of ints, list lenght ,source numeral system 
-int nsys_to_decimal(int numbers[], int lenght, int n){
-    int resault=0;
+//converts number in any given n-based system into single decimal long
+//arguments: list of longs, list lenght ,source numeral system 
+long nsys_to_decimal(long numbers[], int lenght, int n){
+    long resault=0;
     for(int i=0; i<lenght; i++){
         resault += numbers[i]*pow(n,lenght-1-i);
     }
@@ -63,8 +63,8 @@ return(resault);
 
 char mod; 
 //converts decimal number into number in given n-based system
-//arguments(int in decimal system, pointer to destination string, max lenght of pointed string, n, firt run bool)
-void decimal_to_nsys(int decimal, char* number, int x ,int n , bool first_run){
+//arguments(long in decimal system, pointer to destination string, max lenght of pointed string, n, firt run bool)
+void decimal_to_nsys(long decimal, char* number, int x ,int n , bool first_run){
     
 
     
@@ -136,62 +136,62 @@ int main(int argc, char* argv[]){
 
     //Binary to decimal convertion
     //Max binary lenght: 32 digits
-    int binary_int[33];
+    long binary_long[33];
     strcpy(binary_char,argv[1]);
     
-    //converting character binary table into int binary table
+    //converting character binary table into long binary table
     for(int i=0; i<strlen(binary_char); i++){
-        binary_int[i] = char_to_int(binary_char[i]);
+        binary_long[i] = char_to_long(binary_char[i]);
     }
 
-    //converting binary int table into single decimal int
-    int bdecimal_int = nsys_to_decimal(binary_int, strlen(binary_char), 2);
+    //converting binary long table into single decimal long
+    long bdecimal_long = nsys_to_decimal(binary_long, strlen(binary_char), 2);
 
 
 
     //Octal tp decimal conversion
     //Max Octal lenght: 11
-    int octal_int[12];
+    long octal_long[12];
     strcpy(octal_char,argv[2]);
     
-    //converting character octal table into int octal table
+    //converting character octal table into long octal table
     for(int i=0; i<strlen(octal_char); i++){
-        octal_int[i] = char_to_int(octal_char[i]);
+        octal_long[i] = char_to_long(octal_char[i]);
     }
 
-    //converting octal int table into single decimal int
-    int odecimal_int = nsys_to_decimal(octal_int, strlen(octal_char), 8);
+    //converting octal long table into single decimal long
+    long odecimal_long = nsys_to_decimal(octal_long, strlen(octal_char), 8);
 
 
-    //decimal char to int conversion
+    //decimal char to long conversion
     //Max decimal lenght: 10
-    int decimal_int[11];
+    long decimal_long[11];
     strcpy(decimal_char,argv[3]);
     
-    //converting character decimal table into int decimal table
+    //converting character decimal table into long decimal table
     for(int i=0; i<strlen(decimal_char); i++){
-        decimal_int[i] = char_to_int(decimal_char[i]);
+        decimal_long[i] = char_to_long(decimal_char[i]);
     }
 
-    //converting decimal int table into single decimal int
-    int ddecimal_int=0;
+    //converting decimal long table into single decimal long
+    long ddecimal_long=0;
     for(int i=0; i<strlen(decimal_char); i++){
-        ddecimal_int = ddecimal_int*10 + decimal_int[i];
+        ddecimal_long = ddecimal_long*10 + decimal_long[i];
     }
 
 
     //Hexadecimal tp decimal conversion
     //Max Hex lenght: 8
-    int hexadecimal_int[9];
+    long hexadecimal_long[9];
     strcpy(hexadecimal_char,argv[4]);
     
-    //converting character hexadecimal table into int hexadecimal table
+    //converting character hexadecimal table into long hexadecimal table
     for(int i=0; i<strlen(hexadecimal_char); i++){
-        hexadecimal_int[i] = char_to_int(hexadecimal_char[i]);
+        hexadecimal_long[i] = char_to_long(hexadecimal_char[i]);
     }
 
-    //converting hexadecimal int table into single decimal int
-    int hdecimal_int = nsys_to_decimal(hexadecimal_int, strlen(hexadecimal_char), 16);
+    //converting hexadecimal long table into single decimal long
+    long hdecimal_long = nsys_to_decimal(hexadecimal_long, strlen(hexadecimal_char), 16);
 
 
 
@@ -199,28 +199,26 @@ int main(int argc, char* argv[]){
 
 //returning resault to PHP trought printf
 printf("%s ",binary_char);
-printf("%i ",bdecimal_int);
-decimal_to_nsys(bdecimal_int, binary_char, 33, 2, true);
+printf("%i ",bdecimal_long);
+decimal_to_nsys(bdecimal_long, binary_char, 33, 2, true);
 printf("%s\n", binary_char);
 
 
 printf("%s ",octal_char);
-printf("%i ",odecimal_int);
-decimal_to_nsys(odecimal_int, octal_char, 12, 8, true);
+printf("%i ",odecimal_long);
+decimal_to_nsys(odecimal_long, octal_char, 12, 8, true);
 printf("%s\n",octal_char);
 
 
 printf("%s ",decimal_char);
-printf("%i ",ddecimal_int);
-decimal_to_nsys(ddecimal_int, decimal_char, 11, 10, true);
+printf("%i ",ddecimal_long);
+decimal_to_nsys(ddecimal_long, decimal_char, 11, 10, true);
 printf("%s\n",decimal_char);
 
 printf("%s ",hexadecimal_char);
-printf("%i ",hdecimal_int);
-decimal_to_nsys(hdecimal_int, hexadecimal_char, 9, 16, true);
+printf("%i ",hdecimal_long);
+decimal_to_nsys(hdecimal_long, hexadecimal_char, 9, 16, true);
 printf("%s\n",hexadecimal_char);
-
-//Variable size problem :(
 
 return(0);
 }
