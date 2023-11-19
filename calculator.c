@@ -6,10 +6,10 @@
 #include <stdbool.h>
 
 //global variables to pass data between functions   
-char binary_char[65];
-char octal_char[23];
-char decimal_char[21];
-char hexadecimal_char[17];
+char binary_char[33];
+char octal_char[12];
+char decimal_char[11];
+char hexadecimal_char[9];
 
 
 
@@ -61,50 +61,49 @@ return(resault);
 }
 
 
+char mod; 
 //converts decimal number into number in given n-based system
-//arguments(int in decimal system, pointer to destination string, lenght of pointed string, n), firt run bool
-void decimal_to_nsys(int decimal, char* number, int lenght ,int n, bool first_run){
+//arguments(int in decimal system, pointer to destination string, max lenght of pointed string, n, firt run bool)
+void decimal_to_nsys(int decimal, char* number, int x ,int n , bool first_run){
     
 
-    //Converting decimal numbers into numbers in n based system (Up to n=16)
-    char mod;
-    int x = lenght-1;
+    
+    if(x>=0){
 
-    if(first_run){
-    //marking end of the string
-    number[x] = '\0';
-    x -= 1;
-    }
+        if(first_run){
+        //marking end of the string
+        x = x-1;
+        number[x] = '\0';
+        x -= 1;
+        }
 
-    if (decimal>0){
+        if (decimal>0){
 
-        switch (decimal%n)
-        {
-        case 0: case 1: case 2: case 3: case 4: case 5: case 6: case 7: case 8: case 9:
-            
-            mod = decimal%n + '0';
-            break;
-        case 10:
-            memcpy(&mod,"A",1);
-            break;
-        case 11:
-            memcpy(&mod,"B",1);
-            break;
-        case 12:
-            memcpy(&mod,"C",1);
-            break;
-        case 13:
-            memcpy(&mod,"D",1);          
-            break;
-        case 14:
-            memcpy(&mod,"E",1);
-            break;
-        case 15:
-            memcpy(&mod,"F",1);
-            break;
-        
-        default:
-            break;
+            switch (decimal%n)
+            {
+            case 0: case 1: case 2: case 3: case 4: case 5: case 6: case 7: case 8: case 9:
+                mod = decimal%n + '0';
+                break;
+            case 10:
+                memcpy(&mod,"A",1);
+                break;
+            case 11:
+                memcpy(&mod,"B",1);
+                break;
+            case 12:
+                memcpy(&mod,"C",1);
+                break;
+            case 13:
+                memcpy(&mod,"D",1);          
+                break;
+            case 14:
+                memcpy(&mod,"E",1);
+                break;
+            case 15:
+                memcpy(&mod,"F",1);
+                break;
+            default:
+                break;
         }
 
 
@@ -113,9 +112,14 @@ void decimal_to_nsys(int decimal, char* number, int lenght ,int n, bool first_ru
         memcpy(number+x,&mod,1);
         decimal = decimal/n;
 
-        decimal_to_nsys(decimal, number, x, n, false);
-    }
+        decimal_to_nsys(decimal, number, x-1, n, false);
+        }
+        else{
+        memcpy(number+x,"0",1);
+        decimal_to_nsys(0, number, x-1, n, false);
+        }
 
+    }
 }
 
 
@@ -131,8 +135,8 @@ int main(int argc, char* argv[]){
 
 
     //Binary to decimal convertion
-    //Max binary lenght: 64 digits
-    int binary_int[65];
+    //Max binary lenght: 32 digits
+    int binary_int[33];
     strcpy(binary_char,argv[1]);
     
     //converting character binary table into int binary table
@@ -146,8 +150,8 @@ int main(int argc, char* argv[]){
 
 
     //Octal tp decimal conversion
-    //Max Octal lenght: 22
-    int octal_int[23];
+    //Max Octal lenght: 11
+    int octal_int[12];
     strcpy(octal_char,argv[2]);
     
     //converting character octal table into int octal table
@@ -160,8 +164,8 @@ int main(int argc, char* argv[]){
 
 
     //decimal char to int conversion
-    //Max decimal lenght: 20
-    int decimal_int[21];
+    //Max decimal lenght: 10
+    int decimal_int[11];
     strcpy(decimal_char,argv[3]);
     
     //converting character decimal table into int decimal table
@@ -177,8 +181,8 @@ int main(int argc, char* argv[]){
 
 
     //Hexadecimal tp decimal conversion
-    //Max Hex lenght: 16
-    int hexadecimal_int[17];
+    //Max Hex lenght: 8
+    int hexadecimal_int[9];
     strcpy(hexadecimal_char,argv[4]);
     
     //converting character hexadecimal table into int hexadecimal table
@@ -196,24 +200,24 @@ int main(int argc, char* argv[]){
 //returning resault to PHP trought printf
 printf("%s ",binary_char);
 printf("%i ",bdecimal_int);
-decimal_to_nsys(bdecimal_int, binary_char, 65, 2, true);
-printf("%s\n",binary_char);
+decimal_to_nsys(bdecimal_int, binary_char, 33, 2, true);
+printf("%s\n", binary_char);
 
 
 printf("%s ",octal_char);
 printf("%i ",odecimal_int);
-decimal_to_nsys(odecimal_int, octal_char, 23, 8, true);
+decimal_to_nsys(odecimal_int, octal_char, 12, 8, true);
 printf("%s\n",octal_char);
 
 
 printf("%s ",decimal_char);
 printf("%i ",ddecimal_int);
-decimal_to_nsys(ddecimal_int, decimal_char, 21, 10, true);
+decimal_to_nsys(ddecimal_int, decimal_char, 11, 10, true);
 printf("%s\n",decimal_char);
 
 printf("%s ",hexadecimal_char);
 printf("%i ",hdecimal_int);
-decimal_to_nsys(hdecimal_int, hexadecimal_char, 17, 16, true);
+decimal_to_nsys(hdecimal_int, hexadecimal_char, 9, 16, true);
 printf("%s\n",hexadecimal_char);
 
 //Variable size problem :(
