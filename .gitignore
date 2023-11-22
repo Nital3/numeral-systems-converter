@@ -50,3 +50,5 @@ Module.symvers
 Mkfile.old
 dkms.conf
 �����PzP��;��N{
+.vscode/settings.json
+*.json
