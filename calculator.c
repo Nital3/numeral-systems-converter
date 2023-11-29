@@ -31,15 +31,12 @@ void main(int argc, char* argv[]){
     int data_type = char_to_long(convertion);
 
     long final_decimal_long = 0;
+    char minus = ' ';
 
     //get binary sign
     char sgnd_char = '0';
     memcpy(&sgnd_char,argv[3],1);
     int sgnd = char_to_long(sgnd_char);
-
-    //minus sign for returning 
-    char minus = ' ';
-    if(sgnd == 1) {memcpy(&minus, "-", 1);}
     
     switch (data_type)
     {
@@ -51,6 +48,9 @@ void main(int argc, char* argv[]){
 
         //geting rid of stuff left in memory 
         binary_long[0] = 0;
+
+        //minus sign for returning 
+        if(sgnd == 1 && binary_char[0] == '1') {memcpy(&minus, "-", 1);}
 
         //converting character binary table into long binary table
         for(int i=sgnd; i<strlen(binary_char); i++){
