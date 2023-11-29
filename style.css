@@ -25,6 +25,17 @@ input[type=text]:placeholder-shown:disabled {
     color: #727272;
 }
 
+input[type=checkbox] {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+
+
+
 @media screen and (min-width: 480px) {
 #center{
     width: 80vw;
@@ -50,8 +61,10 @@ input[type=text]:placeholder-shown:disabled {
 body{
     background-color: #3a3a3a;
     color:#e4e4e4;
+    font-size: 40px;
 }
 
 h1{
     font-size: 75px;
 }
+

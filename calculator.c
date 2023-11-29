@@ -21,13 +21,26 @@ char hexadecimal_char[9];
 //argv[0] = name of program
 //argv[1] = value
 //argv[2] = system of given number (1 - Binary, 2 - Octal, 3 - Deciamal, 4 - Hexadecimal)
+//argv[3] = signed checkbox
+
 void main(int argc, char* argv[]){
 
+    //get input system
     char convertion = '0';
     memcpy(&convertion,argv[2],2);
     int data_type = char_to_long(convertion);
+
     long final_decimal_long = 0;
 
+    //get binary sign
+    char sgnd_char = '0';
+    memcpy(&sgnd_char,argv[3],1);
+    int sgnd = char_to_long(sgnd_char);
+
+    //minus sign for returning 
+    char minus = ' ';
+    if(sgnd == 1) {memcpy(&minus, "-", 1);}
+    
     switch (data_type)
     {
     case 1:
@@ -35,9 +48,12 @@ void main(int argc, char* argv[]){
         //Max binary lenght: 32 digits
         long binary_long[33];
         strcpy(binary_char,argv[1]);
-    
+
+        //geting rid of stuff left in memory 
+        binary_long[0] = 0;
+
         //converting character binary table into long binary table
-        for(int i=0; i<strlen(binary_char); i++){
+        for(int i=sgnd; i<strlen(binary_char); i++){
             binary_long[i] = char_to_long(binary_char[i]);
         }
 
@@ -106,13 +122,13 @@ void main(int argc, char* argv[]){
         printf("%s\n", binary_char);
 
         decimal_to_nsys(final_decimal_long, octal_char, 12, 8, true);
-        printf("%s\n",octal_char);
+        printf("%c%s\n", minus, octal_char);
 
         decimal_to_nsys(final_decimal_long, decimal_char, 11, 10, true);
-        printf("%s\n",decimal_char);
+        printf("%c%s\n", minus, decimal_char);
 
         decimal_to_nsys(final_decimal_long, hexadecimal_char, 9, 16, true);
-        printf("%s\n",hexadecimal_char);
+        printf("%c%s\n", minus, hexadecimal_char);
         break;
 
     case 2:
@@ -120,13 +136,13 @@ void main(int argc, char* argv[]){
         decimal_to_nsys(final_decimal_long, binary_char, 33, 2, true);
         printf("%s\n", binary_char);
 
-        printf("%s\n",octal_char);
+        printf("%c%s\n", minus, octal_char);
 
         decimal_to_nsys(final_decimal_long, decimal_char, 11, 10, true);
-        printf("%s\n",decimal_char);
+        printf("%c%s\n", minus, decimal_char);
 
         decimal_to_nsys(final_decimal_long, hexadecimal_char, 9, 16, true);
-        printf("%s\n",hexadecimal_char);
+        printf("%c%s\n", minus, hexadecimal_char);
         break;
 
     case 3:
@@ -135,12 +151,12 @@ void main(int argc, char* argv[]){
         printf("%s\n", binary_char);
 
         decimal_to_nsys(final_decimal_long, octal_char, 12, 8, true);
-        printf("%s\n",octal_char);
+        printf("%c%s\n", minus, octal_char);
 
-        printf("%s\n",decimal_char);
+        printf("%c%s\n", minus, decimal_char);
 
         decimal_to_nsys(final_decimal_long, hexadecimal_char, 9, 16, true);
-        printf("%s\n",hexadecimal_char);
+        printf("%c%s\n", minus, hexadecimal_char);
         break;
 
     case 4:
@@ -149,12 +165,12 @@ void main(int argc, char* argv[]){
         printf("%s\n", binary_char);
 
         decimal_to_nsys(final_decimal_long, octal_char, 12, 8, true);
-        printf("%s\n",octal_char);
+        printf("%c %s\n", minus, octal_char);
 
         decimal_to_nsys(final_decimal_long, decimal_char, 11, 10, true);
-        printf("%s\n",decimal_char);
+        printf("%c %s\n", minus, decimal_char);
 
-        printf("%s\n",hexadecimal_char);
+        printf("%c %s\n", minus, hexadecimal_char);
         break;
     
     default:

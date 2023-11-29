@@ -15,6 +15,10 @@ if(isset($_POST['Sub'])){
     $value_oct=$_POST['Oct'];
     $value_dec=$_POST['Dec'];
     $value_hex=$_POST['Hex'];
+    
+    $signed;
+    if($_POST['signed'] == '1') {$signed = '1';}
+    else {$signed = '0';}
 
 
     //allowing only one of numeral types to be passed at same time
@@ -31,7 +35,7 @@ if(isset($_POST['Sub'])){
     if(!empty($value_dec)) {$dec = true; $input_type = 3; $value = $value_dec;}
     if(!empty($value_hex)) {$hex = true; $input_type = 4; $value = $value_hex;}
 
-    exec("calculator.exe $value $input_type", $output, $retval);
+    exec("calculator.exe $value $input_type $signed", $output, $retval);
 
     $value_bin=$output[0];
     $value_oct=$output[1];
@@ -66,6 +70,9 @@ if(isset($_POST['Sub'])){
             if(empty($value_bin)) {Echo("00000000000000000000000000000000");}
             else {Echo($value_bin);}?>
             <?php if($oct||$dec||$hex) {Echo("Disabled");} ?>><br>
+            
+            <input type="checkbox" id="signed" name="signed" value="1">
+            <label for="signed"> Signed?</label><br><br>
 
             Oct: <input type="text" name="Oct"
             placeholder=<?php
