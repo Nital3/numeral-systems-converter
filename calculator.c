@@ -115,72 +115,24 @@ void main(int argc, char* argv[]){
 
 
     //returning resault to PHP trought printf
-    switch (data_type)
-    {
-    case 1:
-        
-        printf("%s\n", binary_char);
 
-        decimal_to_nsys(final_decimal_long, octal_char, 12, 8, true);
+        //skip calculating number that program got as an input
+        if(data_type!=1){
+        decimal_to_nsys(final_decimal_long, binary_char, 33, 2, true);}
+        
+        if(data_type!=2){
+        decimal_to_nsys(final_decimal_long, octal_char, 12, 8, true);}
+        
+        if(data_type!=3){
+        decimal_to_nsys(final_decimal_long, decimal_char, 11, 10, true);}
+        
+        if(data_type!=4){
+        decimal_to_nsys(final_decimal_long, hexadecimal_char, 9, 16, true);}
+        
+
+        printf("%s\n", binary_char);
         printf("%c%s\n", minus, octal_char);
-
-        decimal_to_nsys(final_decimal_long, decimal_char, 11, 10, true);
         printf("%c%s\n", minus, decimal_char);
-
-        decimal_to_nsys(final_decimal_long, hexadecimal_char, 9, 16, true);
         printf("%c%s\n", minus, hexadecimal_char);
-        break;
-
-    case 2:
-        
-        decimal_to_nsys(final_decimal_long, binary_char, 33, 2, true);
-        printf("%s\n", binary_char);
-
-        printf("%c%s\n", minus, octal_char);
-
-        decimal_to_nsys(final_decimal_long, decimal_char, 11, 10, true);
-        printf("%c%s\n", minus, decimal_char);
-
-        decimal_to_nsys(final_decimal_long, hexadecimal_char, 9, 16, true);
-        printf("%c%s\n", minus, hexadecimal_char);
-        break;
-
-    case 3:
-        
-        decimal_to_nsys(final_decimal_long, binary_char, 33, 2, true);
-        printf("%s\n", binary_char);
-
-        decimal_to_nsys(final_decimal_long, octal_char, 12, 8, true);
-        printf("%c%s\n", minus, octal_char);
-
-        printf("%c%s\n", minus, decimal_char);
-
-        decimal_to_nsys(final_decimal_long, hexadecimal_char, 9, 16, true);
-        printf("%c%s\n", minus, hexadecimal_char);
-        break;
-
-    case 4:
-        
-        decimal_to_nsys(final_decimal_long, binary_char, 33, 2, true);
-        printf("%s\n", binary_char);
-
-        decimal_to_nsys(final_decimal_long, octal_char, 12, 8, true);
-        printf("%c %s\n", minus, octal_char);
-
-        decimal_to_nsys(final_decimal_long, decimal_char, 11, 10, true);
-        printf("%c %s\n", minus, decimal_char);
-
-        printf("%c %s\n", minus, hexadecimal_char);
-        break;
-    
-    default:
-        break;
-    }
 
 }
-
-
-//todo
-//optimize code
-//add signed binary option
-//make GUI look good
