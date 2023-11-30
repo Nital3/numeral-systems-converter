@@ -13,6 +13,11 @@ char octal_char[12];
 char decimal_char[11];
 char hexadecimal_char[9];
 
+long binary_long[33];
+long octal_long[12];
+long decimal_long[11];
+long hexadecimal_long[9];
+
 
 //main function recives starting arguments 
 //argc - number of arguments passed
@@ -30,89 +35,47 @@ void main(int argc, char* argv[]){
     memcpy(&convertion,argv[2],2);
     int data_type = char_to_long(convertion);
 
-    long final_decimal_long = 0;
-    char minus = ' ';
-
     //get binary sign
     char sgnd_char = '0';
     memcpy(&sgnd_char,argv[3],1);
     int sgnd = char_to_long(sgnd_char);
+
+    //check binary sign
+    char minus = ' ';
+    char sgn_check;
+    memcpy(&sgn_check, argv[1], 1);
+    if(sgnd == 1 && sgn_check == '1') {memcpy(&minus, "-", 1);}
+
+
+
+    long final_decimal_long = 0;
     
     switch (data_type)
     {
     case 1:
-        //Binary to decimal convertion
-        //Max binary lenght: 32 digits
-        long binary_long[33];
         strcpy(binary_char,argv[1]);
-
-        //geting rid of stuff left in memory 
-        binary_long[0] = 0;
-
-        //minus sign for returning 
-        if(sgnd == 1 && binary_char[0] == '1') {memcpy(&minus, "-", 1);}
-
-        //converting character binary table into long binary table
-        for(int i=sgnd; i<strlen(binary_char); i++){
-            binary_long[i] = char_to_long(binary_char[i]);
-        }
-
-        //converting binary long table into single decimal long
-        final_decimal_long = nsys_to_decimal(binary_long, strlen(binary_char), 2);
+        final_decimal_long = conversion(binary_char, binary_long, 2, sgnd);
         break;
 
     case 2:
-        //Octal tp decimal conversion
-        //Max Octal lenght: 11
-        long octal_long[12];
         strcpy(octal_char,argv[1]);
-    
-        //converting character octal table into long octal table
-        for(int i=0; i<strlen(octal_char); i++){
-            octal_long[i] = char_to_long(octal_char[i]);
-        }
-
-        //converting octal long table into single decimal long
-        final_decimal_long = nsys_to_decimal(octal_long, strlen(octal_char), 8);
+        final_decimal_long = conversion(octal_char, octal_long, 8, 0);
         break;
 
     case 3:
-        //decimal char to long conversion
-        //Max decimal lenght: 10
-        long decimal_long[11];
         strcpy(decimal_char,argv[1]);
-    
-        //converting character decimal table into long decimal table
-        for(int i=0; i<strlen(decimal_char); i++){
-            decimal_long[i] = char_to_long(decimal_char[i]);
-        }
-
-        //converting decimal long table into single decimal long
-        for(int i=0; i<strlen(decimal_char); i++){
-            final_decimal_long = final_decimal_long*10 + decimal_long[i];
-        }
+        final_decimal_long = conversion(decimal_char, decimal_long, 10, 0);
         break;
 
     case 4:
-        //Hexadecimal to decimal conversion
-        //Max Hex lenght: 8
-        long hexadecimal_long[9];
         strcpy(hexadecimal_char,argv[1]);
-    
-        //converting character hexadecimal table into long hexadecimal table
-        for(int i=0; i<strlen(hexadecimal_char); i++){
-            hexadecimal_long[i] = char_to_long(hexadecimal_char[i]);
-        }
-
-        //converting hexadecimal long table into single decimal long
-        final_decimal_long = nsys_to_decimal(hexadecimal_long, strlen(hexadecimal_char), 16);
+        final_decimal_long = conversion(hexadecimal_char, hexadecimal_long, 16, 0);
         break;
 
     default:
         break;
     }
-
-
+    
 
     //returning resault to PHP trought printf
 

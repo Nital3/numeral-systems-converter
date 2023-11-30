@@ -111,3 +111,24 @@ void decimal_to_nsys(long decimal, char* number, int x ,int n , bool first_run){
 
     }
 }
+
+
+
+long conversion(char nsys_char[], long nsys_long[], int n, int sgnd){
+
+    if(sgnd == 1 && n == 2){
+    //geting rid of stuff left in memory 
+    nsys_long[0] = 0;
+
+    }
+
+    //converting character nsys table into long nsys table
+        for(int i=sgnd; i<strlen(nsys_char); i++){
+            nsys_long[i] = char_to_long(nsys_char[i]);
+        }
+
+        //converting nsys long table into single decimal long
+        return(nsys_to_decimal(nsys_long, strlen(nsys_char), n));
+
+
+}
