@@ -2,7 +2,7 @@
 #include <string.h>
 #include <math.h>
 #include <stdbool.h>
-#include "conversion_functions.h"
+#include "functions.h"
 
 
 long char_to_long(char character){

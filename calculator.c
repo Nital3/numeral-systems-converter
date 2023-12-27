@@ -4,7 +4,7 @@
 #include <string.h>
 #include <math.h>
 #include <stdbool.h>
-#include "conversion_functions.h"
+#include "functions.h"
 
 
 //global variables to pass data between functions   
