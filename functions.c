@@ -132,3 +132,14 @@ long conversion(char nsys_char[], long nsys_long[], int n, int sgnd){
 
 
 }
+
+
+void log_print(char* binary_char, int sign, char* octal_char, char* decimal_char, char* hexadecimal_char, char minus, int input_type){
+    
+FILE* file = fopen("log.txt", "a");
+
+fprintf(file, "%s %i %c%s %c%s %c%s %i\n", binary_char, sign, minus, octal_char, minus, decimal_char, minus, hexadecimal_char, input_type);
+printf("%s\n %c%s\n %c%s\n %c%s\n %i\n", binary_char, minus, octal_char, minus, decimal_char, minus, hexadecimal_char, input_type);
+
+fclose(file);
+}

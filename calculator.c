@@ -91,11 +91,9 @@ void main(int argc, char* argv[]){
         
         if(data_type!=4){
         decimal_to_nsys(final_decimal_long, hexadecimal_char, 9, 16, true);}
-        
+    
+    // saves resaults to file and sends them back to php
+    log_print(binary_char, sgnd, octal_char, decimal_char, hexadecimal_char, minus, data_type);
 
-        printf("%s\n", binary_char);
-        printf("%c%s\n", minus, octal_char);
-        printf("%c%s\n", minus, decimal_char);
-        printf("%c%s\n", minus, hexadecimal_char);
 
 }
