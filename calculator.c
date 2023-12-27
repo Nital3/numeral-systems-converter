@@ -77,20 +77,24 @@ void main(int argc, char* argv[]){
     }
     
 
-    //returning resault to PHP trought printf
+    //converts from decimal to other systems
 
-        //skip calculating number that program got as an input
-        if(data_type!=1){
-        decimal_to_nsys(final_decimal_long, binary_char, 33, 2, true);}
+    //it could be further optimised by uncommenting if statements
+    //but it lower output clarity and makes output less uniform,
+    //since skipped vale lacks zeroes at the beggining
+
         
-        if(data_type!=2){
-        decimal_to_nsys(final_decimal_long, octal_char, 12, 8, true);}
+        //if(data_type!=1){
+        decimal_to_nsys(final_decimal_long, binary_char, 33, 2, true);//}
         
-        if(data_type!=3){
-        decimal_to_nsys(final_decimal_long, decimal_char, 11, 10, true);}
+        //if(data_type!=2){
+        decimal_to_nsys(final_decimal_long, octal_char, 12, 8, true);//}
         
-        if(data_type!=4){
-        decimal_to_nsys(final_decimal_long, hexadecimal_char, 9, 16, true);}
+        //if(data_type!=3){
+        decimal_to_nsys(final_decimal_long, decimal_char, 11, 10, true);//}
+        
+        //if(data_type!=4){
+        decimal_to_nsys(final_decimal_long, hexadecimal_char, 9, 16, true);//}
     
     // saves resaults to file and sends them back to php
     log_print(binary_char, sgnd, octal_char, decimal_char, hexadecimal_char, minus, data_type);
