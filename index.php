@@ -65,7 +65,7 @@ if(isset($_POST['Sub'])){
 
             <form action="index.php" method="post">
 
-            Bin: <input type="text" name="Bin"
+            Bin: <input type="text" name="Bin" maxlength="32"
             placeholder=<?php 
             if(empty($value_bin)) {Echo("00000000000000000000000000000000");}
             else {Echo($value_bin);}?>
@@ -74,19 +74,19 @@ if(isset($_POST['Sub'])){
             <input type="checkbox" id="signed" name="signed" value="1">
             <label for="signed"> Signed?</label><br><br>
 
-            Oct: <input type="text" name="Oct"
+            Oct: <input type="text" name="Oct" maxlength="11"
             placeholder=<?php
             if(empty($value_oct)) {Echo("00000000000");}
             else {Echo($value_oct);}?>
             <?php if($bin||$dec||$hex) {Echo("Disabled");} ?>><br>
 
-            Dec: <input type="text" name="Dec"
+            Dec: <input type="text" name="Dec" maxlength="10"
             placeholder=<?php
             if(empty($value_dec)) {Echo("0000000000");}
             else {Echo($value_dec);}?>
             <?php if($bin||$oct||$hex) {Echo("Disabled");} ?>><br>
 
-            Hex: <input type="text" name="Hex"
+            Hex: <input type="text" name="Hex" maxlength="8"
             placeholder=<?php
             if(empty($value_hex)) {Echo("00000000");}
             else {Echo($value_hex);}?>
