@@ -5,7 +5,7 @@
 #include "functions.h"
 
 
-long char_to_long(char character){
+long char_to_int(char character){
     
         //converts character into long value
         switch (character)
@@ -124,7 +124,7 @@ long conversion(char nsys_char[], long nsys_long[], int n, int sgnd){
 
     //converting character nsys table into long nsys table
         for(int i=sgnd; i<strlen(nsys_char); i++){
-            nsys_long[i] = char_to_long(nsys_char[i]);
+            nsys_long[i] = char_to_int(nsys_char[i]);
         }
 
         //converting nsys long table into single decimal long

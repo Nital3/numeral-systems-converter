@@ -33,12 +33,12 @@ void main(int argc, char* argv[]){
     //get input system
     char convertion = '0';
     memcpy(&convertion,argv[2],2);
-    int data_type = char_to_long(convertion);
+    int data_type = char_to_int(convertion);
 
     //get binary sign
     char sgnd_char = '0';
     memcpy(&sgnd_char,argv[3],1);
-    int sgnd = char_to_long(sgnd_char);
+    int sgnd = char_to_int(sgnd_char);
 
     //check binary sign
     char minus = ' ';
