@@ -1,3 +1,8 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdbool.h>
+
 #ifndef FUNCTIONS_H
 #define FUNCTIONS_H
 
