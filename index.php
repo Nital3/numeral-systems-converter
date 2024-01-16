@@ -72,16 +72,6 @@ if(isset($_POST['Sub'])){
          }
     }
 
-
-
-
-
-    if(!empty($value_oct)) {$oct = true; $input_type = 2; $value = $value_oct;}
-    if(!empty($value_dec)) {$dec = true; $input_type = 3; $value = $value_dec;}
-    if(!empty($value_hex)) {$hex = true; $input_type = 4; $value = $value_hex;}
-
-    
-
     $value_bin=$output[0];
     $value_oct=$output[1];
     $value_dec=$output[2];
@@ -117,7 +107,7 @@ if(isset($_POST['Sub'])){
             <?php if($oct||$dec||$hex) {Echo("Disabled");} ?>><br>
             
             <input type="checkbox" id="signed" name="signed" value="1">
-            <label for="signed"> Signed?</label><br><br>
+            <label for="signed"> Signed</label><br>
 
             Oct: <input type="text" name="Oct" max="37777777777" maxlength="10"
             placeholder=<?php
@@ -137,9 +127,7 @@ if(isset($_POST['Sub'])){
             else {Echo($value_hex);}?>
             <?php if($bin||$oct||$dec) {Echo("Disabled");} ?>><br>
 
-            <?php if(!empty($value_bin)) {echo("Click 2nd time to reset: <br>");} ?>
-            <?php if(empty($value_bin)) {echo('</br>');} ?>
-            <input type="submit" value="Submit" name="Sub">
+            <input type="submit" value=<?php if(empty($value_bin)) {echo("Submit");} else{echo("Clear");}?> name="Sub">
             </form> 
         
         </div>
