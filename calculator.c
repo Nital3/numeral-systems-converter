@@ -43,8 +43,10 @@ void main(int argc, char* argv[]){
     //check binary sign
     char minus = ' ';
     char sgn_check;
+    char val_check;
+    memcpy(&val_check, argv[1], 1);
     memcpy(&sgn_check, argv[2], 1);
-    if(sgnd == 1 && sgn_check == '1') {memcpy(&minus, "-", 1);}
+    if(sgnd == 1 && sgn_check == '1' && val_check == '1') {memcpy(&minus, "-", 1);}
 
 
 
